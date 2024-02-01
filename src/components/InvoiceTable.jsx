@@ -20,7 +20,8 @@ function InvoiceTable({ initialData }) {
             <TableRow
                 key={id}
                 initialIsEditing={false}
-                initialInvoiceData={{ description, rate, hours }}
+                initialInvoiceData={{description, rate, hours}}
+                deleteFunc={() => deleteRow(invoice.id)}
                 />
         )
     });
@@ -44,7 +45,10 @@ function InvoiceTable({ initialData }) {
     //delete function needs to get the row's id and then find that entry in currentData and remove it!! (and use the setCurrentData)
 
     const deleteRow = (id) => {
-        
+        // make a new array from currentData that filters out the entry whose id matches the id argument here
+        const filteredList = currentData.filter((invoice) => invoice.id !== id)
+        //update currentData to be filteredList
+        setCurrentData(filteredList)
     }
 
 

@@ -5,7 +5,7 @@ import RateCell from './RateCell';
 import formatCurreny from '../utils/formatCurrency.js';
 import { useState } from 'react';
 
-function TableRow({ initialIsEditing, initialInvoiceData }) {
+function TableRow({ initialIsEditing, initialInvoiceData, deleteFunc }) {
   // const { description, rate, hours } = initialInvoiceData
   
   const [editMode, setEditMode] = useState(initialIsEditing);
@@ -22,6 +22,7 @@ function TableRow({ initialIsEditing, initialInvoiceData }) {
       isEditing={editMode}
       saveClick={makeNormalMode}
       editClick={makeEditMode}
+      deleteFunc={deleteFunc}
       />
       <DescriptionCell 
       isEditing={editMode} 

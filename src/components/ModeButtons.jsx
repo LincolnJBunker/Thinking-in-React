@@ -1,4 +1,4 @@
-function ModeButtons({ isEditing, saveClick, editClick }) {
+function ModeButtons({ isEditing, saveClick, editClick, deleteFunc }) {
 
   return isEditing ? (
     <td>
@@ -6,7 +6,7 @@ function ModeButtons({ isEditing, saveClick, editClick }) {
     </td>
   ) : (
     <td>
-        <button>Delete</button>
+        <button onClick={deleteFunc}>Delete</button>
         <button onClick={editClick}>Edit</button>
     </td>
   )
