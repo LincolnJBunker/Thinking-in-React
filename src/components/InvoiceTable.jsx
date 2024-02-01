@@ -2,11 +2,17 @@ import './InvoiceTable.css';
 import TableRow from './TableRow';
 import TableHeader from './TableHeader';
 import AddButton from './AddButton';
+import { useState } from 'react';
+
+let globalId = 4
 
 function InvoiceTable({ initialData }) {
+    //Take initialData and turn it into state to not have to refresh it from app each time we modify it
+    const [currentData, setCurrentData] = useState(initialData)
+
 
     //loop through initial data and return a <TableRow/> component for each invoice objecet in the array
-    const rows = initialData.map((invoice) => {
+    const rows = currentData.map((invoice) => {
         //destructure the array
         const { id, description, hours, rate } = invoice;
 
@@ -18,6 +24,29 @@ function InvoiceTable({ initialData }) {
                 />
         )
     });
+
+    //create a function that will add a "row" to currentData
+    const addRow = () => {
+        //create a new empty object with id, description, rate, hours
+        let newRow = {
+            id: globalId, 
+            description: "",
+            rate: "",
+            hours: "",
+        }
+
+        globalId++
+
+        //add this new row to currentData with it's state-setter-function
+        setCurrentData([...currentData, newRow])
+    }
+
+    //delete function needs to get the row's id and then find that entry in currentData and remove it!! (and use the setCurrentData)
+
+    const deleteRow = (id) => {
+        
+    }
+
 
   return (
     <div>
@@ -31,7 +60,7 @@ function InvoiceTable({ initialData }) {
             </tbody>
 
             <tfoot>
-                <AddButton />
+                <AddButton addRow={addRow} />
             </tfoot>
         </table>
     </div>

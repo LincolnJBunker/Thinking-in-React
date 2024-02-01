@@ -1,9 +1,9 @@
-function AddButton() {
+function AddButton({ addRow }) {
   return (
     <tr>
         <td></td>
         <td colSpan={4}>
-            <button>Add Row</button>
+            <button onClick={addRow}>Add Row</button>
         </td>
     </tr>
   )
